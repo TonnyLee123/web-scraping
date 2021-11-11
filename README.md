@@ -23,7 +23,7 @@ web = urlopen("https://edition.cnn.com/business/tech?fbclid=IwAR1GemXmRCnGZUpEKi
 # html.parser 建構物件的解析程序
 # 另外2種 處理"雜亂"，格式錯亂的HTML
 # 1. lxml，html5lib
-
+# 建構beautiful物件
 bs = BeautifulSoup(web.read(), "html.parser")
 # 法二
 # bs = BeautifulSoup(web, "html.parser")
