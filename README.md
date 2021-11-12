@@ -154,3 +154,9 @@ for nickName in all_nick_name:
     print(nickName.get_text())
 ```
 取得標籤內的文字。
+
+
+## 走訪樹p19
+- 根據文件位置找元素
+- children(子節點)
+- descendant(後代)
