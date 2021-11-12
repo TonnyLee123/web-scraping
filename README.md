@@ -111,5 +111,17 @@ bs_obj = BeautifulSoup(html, "html.parser")
 # 尋找標籤為span 屬性為class = "nickname" 的元素
 all_nick_name = bs_obj.find_all("span", {"class":"nickname"})
 
-print(len(all_nick_name))
+# Shao Yi-Me & Mimi Shao
+print(len(all_nick_name)) 
 ```
+
+2. get_text()
+```python
+print(all_nick_name[0].get_text())
+print(all_nick_name[1].get_text())
+
+# 使用for loop
+for nickName in all_nick_name:
+    print(nickName.get_text())
+```
+取得標籤內的文字。
