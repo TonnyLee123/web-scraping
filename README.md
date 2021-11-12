@@ -206,10 +206,22 @@ for sibling in bs_obj.find('table', {'id': 'giftList'}).tr.next_siblings:
 ```
 
 ### 讀取某一商品價格
+由下往上
 ```python
 web = urlopen("https://pythonscraping.com/pages/page3.html")
 html = web.read()
 bs_obj = BeautifulSoup(html, "html.parser")
 
 print(bs_obj.find('img', {'src' : '../img/gifts/img1.jpg'}).parent.previous_sibling.get_text())
+```
+由上往下
+```python
+from urllib.request import urlopen
+from bs4 import BeautifulSoup
+
+web = urlopen("https://pythonscraping.com/pages/page3.html")
+html = web.read()
+bs_obj = BeautifulSoup(html, "html.parser")
+
+print(bs_obj.find("tr", {"id" : "gift1", "class":"gift"}).td.next_sibling.next_sibling.get_text())
 ```
