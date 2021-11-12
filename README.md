@@ -44,3 +44,72 @@ web = urlopen("https://edition.cnn.com/business/tech?fbclid=IwAR1GemXmRCnGZUpEKi
     - 500 Internal Server Error
 
 處理此例外
+
+
+
+
+
+```python
+from urllib.request import urlopen
+from bs4 import BeautifulSoup
+
+web = urlopen("https://zh.wikipedia.org/wiki/%E9%82%B5%E5%A5%95%E7%8E%AB")
+html = web.read()
+print(html) 
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## 讀取並整理HTML檔
+```python
+from urllib.request import urlopen
+from bs4 import BeautifulSoup
+
+web = urlopen("https://zh.wikipedia.org/wiki/%E9%82%B5%E5%A5%95%E7%8E%AB")
+html = web.read()
+bs_obj = BeautifulSoup(html, "html.parser")
+
+print(bs_obj)
+```
+
+## 讀取bs_obj裡的標籤
+```python
+from urllib.request import urlopen
+from bs4 import BeautifulSoup
+
+web = urlopen("https://zh.wikipedia.org/wiki/%E9%82%B5%E5%A5%95%E7%8E%AB")
+html = web.read()
+bs_obj = BeautifulSoup(html, "html.parser")
+
+print(bs_obj.h1) #讀取標籤為h1的元素
+```
+
+## find_all 讀取所有nick name
+```python
+from urllib.request import urlopen
+from bs4 import BeautifulSoup
+
+web = urlopen("https://zh.wikipedia.org/wiki/%E9%82%B5%E5%A5%95%E7%8E%AB")
+html = web.read()
+bs_obj = BeautifulSoup(html, "html.parser")
+
+# 尋找標籤為span 屬性為class = "nickname" 的元素
+all_nick_name = bs_obj.find_all("span", {"class":"nickname"})
+
+print(len(all_nick_name))
+```
