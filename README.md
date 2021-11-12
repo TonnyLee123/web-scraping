@@ -64,7 +64,35 @@ print(html)
 
 
 
+```python
+from urllib.request import urlopen
+from bs4 import BeautifulSoup
 
+web = urlopen("https://zh.wikipedia.org/wiki/%E9%82%B5%E5%A5%95%E7%8E%AB")
+html = web.read()
+bs_obj = BeautifulSoup(html, "html.parser")
+
+# 尋找標籤為span 屬性為class = "nickname" 的元素，並且存在名為all_nick_name的list中
+all_nick_name = bs_obj.find_all("span", {"class":"nickname"})
+
+print(len(all_nick_name))
+print(all_nick_name[0])
+print(all_nick_name[1])
+
+print(all_nick_name[0].get_text())
+print(all_nick_name[1].get_text())
+
+for nickName in all_nick_name:
+    print(nickName.get_text())
+# web = urlopen("https://pythonscraping.com/pages/page1.html")
+# html = web.read()
+# bs_obj = BeautifulSoup(html, "html.parser")
+
+# nameList = bs_obj.find_all("h1")
+
+#for name in nameList:
+    #print(name.get_text())
+```
 
 
 
@@ -160,3 +188,17 @@ for nickName in all_nick_name:
 - 根據文件位置找元素
 - children(子節點)
 - descendant(後代)
+- bs.body.h1
+  - body標籤的後代的第一個h1標籤 
+- bs.div.find_all("img")
+  - 找出文件中第一個div，然後在找出此div後代中所有的img
+
+### 範例一 尋找後代的子節點
+```
+web = urlopen("https://pythonscraping.com/pages/page3.html")
+html = web.read()
+bs_obj = BeautifulSoup(html, "html.parser")
+
+for child in bs_obj.find('table', {'id': 'giftList'}).children:
+    print(child)
+```
