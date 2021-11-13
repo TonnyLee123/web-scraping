@@ -254,4 +254,28 @@ bs_obj = BeautifulSoup(html, "html.parser")
 # URL 以/wiki/開頭
 for ele in bs_obj.find('div', {'id':'bodyContent'}).find_all('a', href = re.compile("^(/wiki/)((?!:).)*$")):  # 指讀取主題連結
     print(ele.attrs['href'])
+```python
+from urllib.request import urlopen
+from bs4 import BeautifulSoup
+import re
+import random
+import datetime
+
+
+random.seed(datetime.datetime.now()) #???
+
+def getLinks(articleUrl):
+    web = urlopen("https://zh.wikipedia.org{}".format(articleUrl)) # https://zh.wikipedia.org/wiki/%E9%82%B5%E5%A5%95%E7%8E%AB
+    html = web.read()
+    bs_obj = BeautifulSoup(html, "html.parser")
+
+    return bs_obj.find('div', id = 'bodyContent').find_all('a', href = re.compile("^(/wiki/)((?!:).)*$"))
+
+subject_links = getLinks('/wiki/%E9%82%B5%E5%A5%95%E7%8E%AB')
+
+while len(subject_links ) > 0:
+    newAriticle = subject_links[random.randint(0, len(subject_links)-1)].attrs['href']
+    print(newAriticle)      # 把所有article列印出來
+    subject_links = getLinks(newAriticle)
+
 ```
