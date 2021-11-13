@@ -238,3 +238,20 @@ for link in bs_obj.find_all("a"): # <a>的標籤
         print(link.attrs['href'])
 
 ```
+```python
+from urllib.request import urlopen
+from bs4 import BeautifulSoup
+import re
+
+web = urlopen("https://zh.wikipedia.org/wiki/%E9%82%B5%E5%A5%95%E7%8E%AB")
+html = web.read()
+bs_obj = BeautifulSoup(html, "html.parser")
+
+# 解決方式: 使用regex
+# 觀察到wiki主題頁的連結的共同特徵
+# 都在bodyContent的div中
+# URL 中沒有冒號
+# URL 以/wiki/開頭
+for ele in bs_obj.find('div', {'id':'bodyContent'}).find_all('a', href = re.compile("^(/wiki/)((?!:).)*$")):  # 指讀取主題連結
+    print(ele.attrs['href'])
+```
