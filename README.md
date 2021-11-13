@@ -153,9 +153,9 @@ print(bs_obj.h1) #讀取標籤為h1的元素
 - keyword
   - 根據attributes搜尋符合的標籤。
   - .find_all(id = "title")
-    - = .find_all("", "id" : "title") 
+    - = .find_all("", {"id" : "title"}) 
   - .find_all(class_ = "nickname")
-    - = .find_all("", "class" : "nickname") 
+    - = .find_all("", {"class" : "nickname"}) 
 ## find_all 讀取所有nick name
 ```python
 from urllib.request import urlopen
