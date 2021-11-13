@@ -225,3 +225,16 @@ bs_obj = BeautifulSoup(html, "html.parser")
 
 print(bs_obj.find("tr", {"id" : "gift1", "class":"gift"}).td.next_sibling.next_sibling.get_text())
 ```
+
+
+```python
+web = urlopen("https://zh.wikipedia.org/wiki/%E9%82%B5%E5%A5%95%E7%8E%AB")
+html = web.read()
+bs_obj = BeautifulSoup(html, "html.parser")
+# 產生該網頁的所有連結
+# 問題: 擷取到的連結包含主要連結與其他連結
+for link in bs_obj.find_all("a"): # <a>的標籤
+    if 'href' in link.attrs:
+        print(link.attrs['href'])
+
+```
