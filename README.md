@@ -254,6 +254,8 @@ bs_obj = BeautifulSoup(html, "html.parser")
 # URL 以/wiki/開頭
 for ele in bs_obj.find('div', {'id':'bodyContent'}).find_all('a', href = re.compile("^(/wiki/)((?!:).)*$")):  # 指讀取主題連結
     print(ele.attrs['href'])
+```
+
 ```python
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
@@ -279,3 +281,28 @@ while len(subject_links ) > 0:
     subject_links = getLinks(newAriticle)
 
 ```
+
+# Random seed() Method
+
+```python
+import random
+
+random.seed(10) # the generator creates a random number based on the seed value, so if the seed value is 10, you will always get 0.5714025946899135 as the first random number.
+print(random.random())  # random.random(): 0-1 隨機產生一個數
+```
+- initialize the random number generator.
+
+- The random number generator needs a number to start with (a seed value), to be able to generate a random number.
+
+- By default the random number generator uses the current system time.
+
+- Use the seed() method to customize the start number of the random number generator.
+
+# datetime 
+```python
+import datetime
+
+x = datetime.datetime.now() # current date
+print(x)
+```
+[dates](https://www.w3schools.com/python/python_datetime.asp)
