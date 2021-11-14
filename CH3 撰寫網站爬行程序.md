@@ -37,7 +37,7 @@ def getLinks(pageURL):
     bs_obj = BeautifulSoup(html, "html.parser")
 
     try:
-        print(bs_obj.h.get_text())
+        print(bs_obj.h1.get_text())
         print(bs_obj.find(id = 'mw-content-text').find_all('p')[0])
         print(bs_obj.find(id = 'ca-edit').find('span').find('a'.attrs['href']))
     except AttributeError:
@@ -53,4 +53,19 @@ def getLinks(pageURL):
                 getLinks(newPage)
 
 getLinks('/wiki/%E9%82%B5%E5%A5%95%E7%8E%AB')
+```
+
+上的註解
+```python
+from urllib.request import urlopen
+from bs4 import BeautifulSoup
+
+web = urlopen('https://zh.wikipedia.org/wiki/%E9%82%B5%E5%A5%95%E7%8E%AB')
+html = web.read()
+bs_obj = BeautifulSoup(html, "html.parser")
+
+print(bs_obj.h1.get_text())
+print(bs_obj.find(id = 'mw-content-text').find_all('p')[0])
+print(bs_obj.find(id ='ca-edit').find('a').attrs['href'])
+
 ```
