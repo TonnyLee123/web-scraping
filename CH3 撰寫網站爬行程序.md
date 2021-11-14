@@ -39,7 +39,7 @@ def getLinks(pageURL):
     try:
         print(bs_obj.h1.get_text())
         print(bs_obj.find(id = 'mw-content-text').find_all('p')[0])
-        print(bs_obj.find(id = 'ca-edit').find('span').find('a'.attrs['href']))
+        print(bs_obj.find(id = 'ca-edit').find('a').attrs['href']))
     except AttributeError:
         print("This page is missing something!")
 
