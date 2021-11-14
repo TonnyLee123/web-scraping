@@ -20,6 +20,7 @@ def getLinks(pageURL):
                 pages.add(newPage)
                 # 再爬新的網站
                 getLinks(newPage)
+getLinks('/wiki/%E9%82%B5%E5%A5%95%E7%8E%AB')
 ```
 ```python
 from urllib.request import urlopen
@@ -51,5 +52,5 @@ def getLinks(pageURL):
                 pages.add(newPage)
                 getLinks(newPage)
 
-    getLinks('')
+getLinks('/wiki/%E9%82%B5%E5%A5%95%E7%8E%AB')
 ```
