@@ -21,3 +21,35 @@ def getLinks(pageURL):
                 # 再爬新的網站
                 getLinks(newPage)
 ```
+```python
+from urllib.request import urlopen
+from bs4 import BeautifulSoup
+import re
+
+# set() 元素獨特且沒有特定順序
+pages = set()
+
+def getLinks(pageURL):
+    global pages
+    web = urlopen("https://zh.wikipedia.org{}".format(pageURL))
+    html = web.read()
+    bs_obj = BeautifulSoup(html, "html.parser")
+
+    try:
+        print(bs_obj.h.get_text())
+        print(bs_obj.find(id = 'mw-content-text').find_all('p')[0])
+        print(bs_obj.find(id = 'ca-edit').find('span').find('a'.attrs['href']))
+    except AttributeError:
+        print("This page is missing something!")
+
+    for link in bs_obj.find_all('a', href = re.compile('^(/wiki/)')):
+        if 'href' in link.attrs:
+            if link.attrs['href'] not in pages:
+                newPage = link.attrs['href']
+                print('-'*20)
+                print(newPage)
+                pages.add(newPage)
+                getLinks(newPage)
+
+    getLinks('')
+```
