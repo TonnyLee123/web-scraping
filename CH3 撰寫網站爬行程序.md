@@ -69,6 +69,7 @@ print(bs_obj.find(id = 'mw-content-text').find_all('p')[0])
 print(bs_obj.find(id ='ca-edit').find('a').attrs['href'])
 
 ```
+```python
 import requests
 from bs4 import BeautifulSoup
 class Content:
@@ -100,3 +101,42 @@ content = scrapeBrookings(url)
 print('TITLE: {}\n'.format(content.title))
 print('URL: {}\n'.format(content.url))
 print(content.body)
+```
+```python
+import requests
+from bs4 import BeautifulSoup
+class Content:
+    def __init__(self, url, title, body):
+        self.url = url
+        self.title = title
+        self.body = body
+
+def getPage(url):
+        req = requests.get(url)
+        return BeautifulSoup(req.text, 'html.parser')
+
+def scrapeNYTTimes(url):
+        bs = getPage(url)
+        title = bs.find('h1').text
+        body = bs.find_all('div', class_ = 'css-s99gbd') # 如何取得新聞內容
+        return Content(url, title, body)
+
+def scrapeMimi(url):
+        bs = getPage(url)
+        title = bs.find('h1').text
+        body = bs.find('h')
+        return Content(url, title, body)
+
+url = 'https://zh.wikipedia.org/wiki/%E9%82%B5%E5%A5%95%E7%8E%AB'
+content = scrapeMimi(url)
+print('TITLE: {}\n'.format(content.title))
+print('URL: {}\n'.format(content.url))
+print(content.body)
+
+
+url = 'https://www.nytimes.com/2021/11/16/world/asia/biden-xi-usa-china.html'
+content = scrapeNYTTimes(url)
+print('TITLE: {}\n'.format(content.title))
+print('URL: {}\n'.format(content.url))
+print(content.body)
+```
