@@ -141,7 +141,7 @@ print('URL: {}\n'.format(content.url))
 print(content.body)
 ```
 
-# 爬取所有links
+### 爬取所有links(包含主題連結，其他連結)
 ```python
 web = urlopen("https://zh.wikipedia.org/wiki/%E9%82%B5%E5%A5%95%E7%8E%AB")
 html = web.read()
@@ -151,3 +151,4 @@ for link in bs_obj.find_all('a'):
     if 'href' in link.attrs:
         print(link.attrs['href'])
 ```
+### 
