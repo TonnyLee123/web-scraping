@@ -182,7 +182,6 @@ import re
 import random
 import datetime
 
-
 random.seed(datetime.datetime.now()) #???
 
 def getLinks(articleUrl):
@@ -190,7 +189,7 @@ def getLinks(articleUrl):
     html = web.read()
     bs_obj = BeautifulSoup(html, "html.parser")
 
-    return bs_obj.find('div', id = 'bodyContent').find_all('a', href = re.compile("^(/wiki/)((?!:).)*$"))
+    return bs_obj.find('div', id = 'bodyContent').find_all('a', href = re.compile("^(/wiki/)((?!:).)*$")) # 尋找主題連結
 
 subject_links = getLinks('/wiki/%E9%82%B5%E5%A5%95%E7%8E%AB')
 
