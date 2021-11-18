@@ -1,7 +1,7 @@
 ## urlretrieve(照片url, 檔案名稱)
 - 下載url指向的圖片
-- # urlretrieve(照片url, 檔案名稱)
-- 
+- urlretrieve(照片url, 檔案名稱)
+
 ### 儲存單一照片
 ```
 from urllib.request import urlretrieve
