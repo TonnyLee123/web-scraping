@@ -64,7 +64,7 @@ for nickName in all_nick_name:
 - bs.div.find_all("img")
   - 找出文件中第一個div，然後在找出此div後代中所有的img
 
-### 範例一 尋找後代的子節點
+### 範例一 .尋找後代的子節點
 ```
 web = urlopen("https://pythonscraping.com/pages/page3.html")
 html = web.read()
