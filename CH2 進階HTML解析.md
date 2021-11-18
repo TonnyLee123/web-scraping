@@ -55,7 +55,103 @@ for nickName in all_nick_name:
 ```
 取得標籤內的文字。
 
+## 走訪樹p19
+- 根據文件位置找元素
+- children(子節點)
+- descendant(後代)
+- bs.body.h1
+  - body標籤的後代的第一個h1標籤 
+- bs.div.find_all("img")
+  - 找出文件中第一個div，然後在找出此div後代中所有的img
 
+### 範例一 尋找後代的子節點
+```
+web = urlopen("https://pythonscraping.com/pages/page3.html")
+html = web.read()
+bs_obj = BeautifulSoup(html, "html.parser")
+
+for child in bs_obj.find('table', {'id': 'giftList'}).children:
+    print(child)
+for sibling in bs_obj.find('table', {'id': 'giftList'}).tr.next_siblings:
+    print(sibling)
+```
+
+### 讀取某一商品價格
+由下往上
+```python
+web = urlopen("https://pythonscraping.com/pages/page3.html")
+html = web.read()
+bs_obj = BeautifulSoup(html, "html.parser")
+
+print(bs_obj.find('img', {'src' : '../img/gifts/img1.jpg'}).parent.previous_sibling.get_text())
+```
+由上往下
+```python
+from urllib.request import urlopen
+from bs4 import BeautifulSoup
+
+web = urlopen("https://pythonscraping.com/pages/page3.html")
+html = web.read()
+bs_obj = BeautifulSoup(html, "html.parser")
+
+print(bs_obj.find("tr", {"id" : "gift1", "class":"gift"}).td.next_sibling.next_sibling.get_text())
+```
+
+
+```python
+web = urlopen("https://zh.wikipedia.org/wiki/%E9%82%B5%E5%A5%95%E7%8E%AB")
+html = web.read()
+bs_obj = BeautifulSoup(html, "html.parser")
+# 產生該網頁的所有連結
+# 問題: 擷取到的連結包含主要連結與其他連結
+for link in bs_obj.find_all("a"): # <a>的標籤
+    if 'href' in link.attrs:
+        print(link.attrs['href'])
+
+```
+```python
+from urllib.request import urlopen
+from bs4 import BeautifulSoup
+import re
+
+web = urlopen("https://zh.wikipedia.org/wiki/%E9%82%B5%E5%A5%95%E7%8E%AB")
+html = web.read()
+bs_obj = BeautifulSoup(html, "html.parser")
+
+# 解決方式: 使用regex
+# 觀察到wiki主題頁的連結的共同特徵
+# 都在bodyContent的div中
+# URL 中沒有冒號
+# URL 以/wiki/開頭
+for ele in bs_obj.find('div', {'id':'bodyContent'}).find_all('a', href = re.compile("^(/wiki/)((?!:).)*$")):  # 指讀取主題連結
+    print(ele.attrs['href'])
+```
+
+```python
+from urllib.request import urlopen
+from bs4 import BeautifulSoup
+import re
+import random
+import datetime
+
+
+random.seed(datetime.datetime.now()) #???
+
+def getLinks(articleUrl):
+    web = urlopen("https://zh.wikipedia.org{}".format(articleUrl)) # https://zh.wikipedia.org/wiki/%E9%82%B5%E5%A5%95%E7%8E%AB
+    html = web.read()
+    bs_obj = BeautifulSoup(html, "html.parser")
+
+    return bs_obj.find('div', id = 'bodyContent').find_all('a', href = re.compile("^(/wiki/)((?!:).)*$"))
+
+subject_links = getLinks('/wiki/%E9%82%B5%E5%A5%95%E7%8E%AB')
+
+while len(subject_links ) > 0:
+    newAriticle = subject_links[random.randint(0, len(subject_links)-1)].attrs['href']
+    print(newAriticle)      # 把所有article列印出來
+    subject_links = getLinks(newAriticle)
+
+```
 
 
 
