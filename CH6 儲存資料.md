@@ -44,3 +44,34 @@ finally:
     csvFile.close()
 
 ```
+
+### 爬取table資料，並且存到CSV
+```python
+import csv
+from urllib.request import urlopen
+from bs4 import BeautifulSoup
+
+html = urlopen("https://zh.wikipedia.org/wiki/%E9%82%B5%E5%A5%95%E7%8E%AB")
+bs = BeautifulSoup(html, "html.parser")
+
+# 尋找第1個table
+table = bs.find_all("table", class_="wikitable")[1]   # 問題!!!第2個表格就亂掉，好像會自動換行
+rows = table.find_all('tr')
+# print(table)
+# print('*'*20)
+# print(table.find_all('tr'))
+# print('*'*20)
+
+csvFile = open('米米.csv', 'wt+', encoding="utf-8")  # encoding="utf-8" ??? 不加有錯誤
+writer = csv.writer(csvFile)
+
+try:
+    for row in rows:
+        csvRow = []
+        for cell in row.find_all(['th', 'td']):
+            csvRow.append(cell.get_text())
+        # 將[]裡的資料寫入米米.csv
+        writer.writerow(csvRow)
+finally:
+    csvFile.close()
+```
