@@ -207,4 +207,39 @@ while len(subject_links ) > 0:
 ```
 
 
+# 跨整個網站蒐集資料
+```python
+from urllib.request import urlopen
+from bs4 import BeautifulSoup
+import re
 
+# set() 元素獨特且沒有特定順序
+pages = set()
+
+def getLinks(pageURL):
+    global pages
+    web = urlopen("https://zh.wikipedia.org{}".format(pageURL))
+    html = web.read()
+    bs_obj = BeautifulSoup(html, "html.parser")
+
+    # 有些網址無法編輯(如: 國家, ...), 所以要用try, except
+    try:
+        # 第一個標題
+        print(bs_obj.h1.get_text()) # 標題只有一個所以可以直接.h1
+        # 第一段
+        # print(bs_obj.p.get_text()) ， !!!當你要第二段就會出現問題
+        print(bs_obj.find(id = 'mw-content-text').find_all('p')[0].get_text()) # find_all('p')[0] 第一段
+        # 編輯網址
+        print(bs_obj.find(id = 'ca-edit').find('a').attrs['href'])
+    except AttributeError: # 當遇到AttributeError時，執行下列程式。
+        print('This page is missing something!!!')
+
+    for link in bs_obj.find_all('a', href = re.compile('^(/wiki/)')):
+        if link.attrs['href'] not in pages:
+            newPage = link.attrs['href'] # /wiki/%E6%BC%94%E5%93%A1
+            print('-'*20)
+            print(newPage)
+            getLinks(newPage)
+
+getLinks('/wiki/%E9%82%B5%E5%A5%95%E7%8E%AB')
+```
