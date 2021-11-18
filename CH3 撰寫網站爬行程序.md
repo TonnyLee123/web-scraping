@@ -151,4 +151,25 @@ for link in bs_obj.find_all('a'):
     if 'href' in link.attrs:
         print(link.attrs['href'])
 ```
-### 
+問題: 擷取到的連結包含主要連結與其他連結(不重要的)
+
+### 爬取主題links
+```python
+from urllib.request import urlopen
+from bs4 import BeautifulSoup
+import re
+
+web = urlopen("https://zh.wikipedia.org/wiki/%E9%82%B5%E5%A5%95%E7%8E%AB")
+html = web.read()
+bs_obj = BeautifulSoup(html, "html.parser")
+
+for ele in bs_obj.find('div', {'id':'bodyContent'}).find_all('a', href = re.compile("^(/wiki/)((?!:).)*$")):  # 指讀取主題連結
+    print(ele.attrs['href'])
+```
+解決方式: 使用Regex
+- Regex 選取合適格式的網址。
+
+wiki主題頁的連結的共同特徵
+- 都在bodyContent的div中
+- URL 中沒有冒號
+- URL 以/wiki/開頭
