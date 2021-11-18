@@ -1,3 +1,70 @@
+# find_all 與 find()
+- 根據不同的屬性找出所需的全部或單一標籤的元素。
+- find_all(tag, attributes, recursive, text, limit, keyword)
+- find(tag, attributes, recursive, text, keyword)
+- tag
+  - .find_all("h1")
+  - .find_all(["h1", "h2"])
+- attributes
+  - .find_all("span", {"class":"nickname"})
+  - .find_all("span", {"class":"nickname", "name"})
+- recursive
+  - 布林值
+  - 你想要多深入文件?
+  - True
+    - 在整個標籤裡尋找符合的標籤 
+    - 預設為True
+  - False
+    - 只在文件的第一層，尋找符合的標籤 
+- text
+  - 根據元素內的文字內容搜尋
+  - .find_all(text = "Hi")
+- limit
+  - 只限於find_all
+  - ??? 
+- keyword
+  - 根據attributes搜尋符合的標籤。
+  - .find_all(id = "title")
+    - = .find_all("", {"id" : "title"}) 
+  - .find_all(class_ = "nickname")
+    - = .find_all("", {"class" : "nickname"}) 
+## find_all 讀取所有nick name
+```python
+from urllib.request import urlopen
+from bs4 import BeautifulSoup
+
+web = urlopen("https://zh.wikipedia.org/wiki/%E9%82%B5%E5%A5%95%E7%8E%AB")
+html = web.read()
+bs_obj = BeautifulSoup(html, "html.parser")
+
+# 尋找標籤為span 屬性為class = "nickname" 的元素
+all_nick_name = bs_obj.find_all("span", {"class":"nickname"})
+
+# Shao Yi-Me & Mimi Shao
+print(len(all_nick_name)) 
+```
+
+2. get_text()
+```python
+print(all_nick_name[0].get_text())
+print(all_nick_name[1].get_text())
+
+# 使用for loop
+for nickName in all_nick_name:
+    print(nickName.get_text())
+```
+取得標籤內的文字。
+
+
+
+
+
+
+
+
+
+
+
 # regex(正規表示式)
 
 ### 範例 找出電子郵件地址
