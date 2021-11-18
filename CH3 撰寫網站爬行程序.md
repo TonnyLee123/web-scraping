@@ -140,3 +140,14 @@ print('TITLE: {}\n'.format(content.title))
 print('URL: {}\n'.format(content.url))
 print(content.body)
 ```
+
+# 爬取所有links
+```python
+web = urlopen("https://zh.wikipedia.org/wiki/%E9%82%B5%E5%A5%95%E7%8E%AB")
+html = web.read()
+bs_obj = BeautifulSoup(html, "html.parser")
+
+for link in bs_obj.find_all('a'):
+    if 'href' in link.attrs:
+        print(link.attrs['href'])
+```
