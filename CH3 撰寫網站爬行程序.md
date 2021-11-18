@@ -175,6 +175,7 @@ wiki主題頁的連結的共同特徵
 - URL 以/wiki/開頭
 
 ### getLinks主函式
+- 功能: Return bs_object
 ```python
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
@@ -182,21 +183,26 @@ import re
 import random
 import datetime
 
-random.seed(datetime.datetime.now()) #???
+# 以系統目前的時間產收隨機亂數，確保程式每次執行時都有新路徑。
+random.seed(datetime.datetime.now())
 
+# getLink():取得bs_object
 def getLinks(articleUrl):
     web = urlopen("https://zh.wikipedia.org{}".format(articleUrl)) # https://zh.wikipedia.org/wiki/%E9%82%B5%E5%A5%95%E7%8E%AB
     html = web.read()
     bs_obj = BeautifulSoup(html, "html.parser")
-
+    
+    # return vs_obj
     return bs_obj.find('div', id = 'bodyContent').find_all('a', href = re.compile("^(/wiki/)((?!:).)*$")) # 尋找主題連結
 
 subject_links = getLinks('/wiki/%E9%82%B5%E5%A5%95%E7%8E%AB')
 
+# 當頁面有其他主題連結時
 while len(subject_links ) > 0:
+    # 隨機找出一個主題連結作為新頁面。
     newAriticle = subject_links[random.randint(0, len(subject_links)-1)].attrs['href']
-    print(newAriticle)      # 把所有article列印出來
-    subject_links = getLinks(newAriticle)
+    print(newAriticle)
+    subject_links = getLinks(newAriticle) # 新article裡的所有主題連結
 
 ```
 
