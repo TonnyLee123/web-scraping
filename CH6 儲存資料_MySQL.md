@@ -66,3 +66,26 @@ FROM customers
 ORDER BY first_name 
 -- ABC..
 ```
+### 範例三 column數學運算
+對原有的 ColumnA 進行運算產生 ColumnB
+```sql
+USE sql_store;
+
+-- 在points column中運算: points +10
+-- AS 為新column取名稱，不一定要AS
+SELECT 
+	first_name, 
+	last_name, 
+	points, 
+	points + 10 AS new_column, 
+-- 'new column' 沒有_
+FROM customer
+```
+
+### 在column中移除重複的row
+```sql
+USE sql_store;
+-- 在state column中，移除相同的state。
+SELECT DISTINCT state 
+FROM customers
+```
