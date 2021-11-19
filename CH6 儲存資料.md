@@ -23,6 +23,8 @@ urlretrieve(imgLocation, 'TW_flag.png')
 ```
 
 # CSV
+- Comma-separated values
+- Python standard library
 
 ### 儲存資料到CSV
 ```python
