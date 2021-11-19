@@ -40,11 +40,12 @@ import csv
 # 若檔案存在，則開啟檔案
 # 若檔案不存在，則新增檔案
 # newline='' 不換行
-# 將檔案存入csv物件中
-csv_obj = open('test.csv', 'w', newline='')
 
-#進入寫模式
-writer = csv.writer(csvfile)
+csvFile = open('test.csv', 'w', newline='')
+
+# 將檔案存入csv物件中
+# 進入寫模式
+csv_obj  = csv.writer(csvFile)
 
 # 寫入第一行資料
 csv_obj.writerow(['name', 'age', 'phone'])
@@ -58,7 +59,7 @@ data = [
 csv_obj.writerow(data)
 
 # 關閉csv物件
-csv_obj.close()
+csv_File.close()
 ```
 ### 2. 儲存資料到CSV
 ```python
