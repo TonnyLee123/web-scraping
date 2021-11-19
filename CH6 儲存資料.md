@@ -89,8 +89,24 @@ finally:
     - 以列表形式回傳資料。
 - DictReader
     - 以字典形式回傳資料。
-    - 手列為key  
+    - 首列為key  
+```python
+import csv
 
+# 開啟csv檔
+csvfile = open('test.csv', 'r')
+
+# 把檔案存到csv物件
+# 進入讀模式
+# 以列表形式輸出
+csv_obj = csv.reader(csv_obj)
+# 以字典形式輸出
+csv_obj = csv.DistReader(csv_obj)
+
+rows = [row for row in csv_obj]
+print(rows)
+# csv_obj.close()
+```
 ### 爬取table資料，並且存到CSV
 ```python
 import csv
