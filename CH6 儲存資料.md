@@ -84,7 +84,7 @@ finally:
 
 ```
 
-### 讀取csv檔案
+### 3. 讀取csv檔案
 - reader
     - 以列表形式回傳資料。
 - DictReader
@@ -106,6 +106,23 @@ csv_obj = csv.DistReader(csv_obj)
 rows = [row for row in csv_obj]
 print(rows)
 # csv_obj.close()
+```
+
+### 4. 讀取某行資料
+```python
+import csv
+
+csvfile = open('test.csv', 'r')
+# 以列表形式輸出
+csv_obj = csv.reader(csv_obj)
+for row in csv_obj:
+    if 'Amy' in row:
+    	print(row)
+# 以dict形式輸出
+csv_obj = csv.DictReader(csv_obj)
+for row in csv_obj:
+    if row['name'] == 'Amy':
+    	print(row)
 ```
 ### 爬取table資料，並且存到CSV
 ```python
