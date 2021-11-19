@@ -26,6 +26,33 @@ urlretrieve(imgLocation, 'TW_flag.png')
 - Comma-separated values
 - Python standard library
 
+###  儲存資料到CSV
+```
+import csv
+
+# 若檔案存在，則開啟檔案
+# 若檔案不存在，則新增檔案
+# newline='' 不換行
+# 將檔案存入csv物件中
+csv_obj = open('test.csv', 'w', newline='')
+
+#進入寫模式
+writer = csv.writer(csvfile)
+
+# 寫入第一行資料
+csv_obj.writerow(['name', 'age', 'phone'])
+
+# 寫入多行資料
+# 資料都要放在[]裡
+data = [
+	('Tonny', '20', '09123456789')  # 第一行
+	('Amy', '18', '09123456788')    # 第二行
+ ]
+csv_obj.writerow(data)
+
+# 關閉csv物件
+csv_obj.close()
+```
 ### 儲存資料到CSV
 ```python
 import csv
