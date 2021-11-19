@@ -87,7 +87,8 @@ finally:
 - reader
     - 以列表形式回傳資料。
 - DictReader
-    - 以字典形式回傳資料。 
+    - 以字典形式回傳資料。
+    - 手列為key  
 
 ### 爬取table資料，並且存到CSV
 ```python
