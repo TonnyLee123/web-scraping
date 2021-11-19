@@ -26,6 +26,13 @@ urlretrieve(imgLocation, 'TW_flag.png')
 - Comma-separated values
 - Python standard library
 
+## 常用function()
+- open()
+- close()
+- csv.writer()
+- writerow()
+- writerows()
+
 ###  儲存資料到CSV
 ```
 import csv
