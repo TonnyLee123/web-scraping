@@ -33,8 +33,8 @@ urlretrieve(imgLocation, 'TW_flag.png')
 - writerow()
 - writerows()
 
-###  儲存資料到CSV
-```
+### 1. 儲存資料到CSV
+```python
 import csv
 
 # 若檔案存在，則開啟檔案
@@ -60,7 +60,7 @@ csv_obj.writerow(data)
 # 關閉csv物件
 csv_obj.close()
 ```
-### 儲存資料到CSV
+### 2. 儲存資料到CSV
 ```python
 import csv
 # 創建一個csv檔案
@@ -82,6 +82,12 @@ finally:
     csvFile.close()
 
 ```
+
+### 讀取csv檔案
+- reader
+    - 以列表形式回傳資料。
+- DictReader
+    - 以字典形式回傳資料。 
 
 ### 爬取table資料，並且存到CSV
 ```python
