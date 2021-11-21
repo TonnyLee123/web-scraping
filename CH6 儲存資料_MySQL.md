@@ -45,12 +45,22 @@ Query editor window
 - Filter the result with specify condition(row).
 - 利用WHERE, 選出符合___條件的row
 - 先AND後OR
+- IN / NOT IN
+    - Conbine mutiple OR conditions using OR operator.
 ```sql
 SELECT *
 FROM customers
 -- 符合___條件的row
 WHERE points > 300 AND birth_date > 1986-02-18 AND state = 'VA'
 ```
+IN
+```sql 
+SELECT *
+FROM customers
+WHERE state IN('VA', 'GA', 'FL')
+-- WHERE state = 'VA' or 'GA' or 'FL'
+``` 
+
 # ORDER BY
 - Sort the ___ column.
   - ORDER BY first_name 
