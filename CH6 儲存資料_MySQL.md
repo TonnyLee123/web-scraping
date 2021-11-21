@@ -42,9 +42,14 @@ Query editor window
   - FROM customers   
 
 # WHERE
-- Filter the result with specify row
-  - WHERE customer_id = 1
-
+- Filter the result with specify condition(row).
+- 利用WHERE, 選出符合___條件的row
+```sql
+SELECT *
+FROM customers
+-- 符合___條件的row
+WHERE points > 300 AND birth_date > 1986-02-18 AND state = 'VA'
+```
 # ORDER BY
 - Sort the ___ column.
   - ORDER BY first_name 
@@ -66,7 +71,7 @@ FROM customers
 ORDER BY first_name 
 -- ABC..
 ```
-### 範例三 column數學運算
+### 範例二 column數學運算
 對原有的 ColumnA 進行運算產生 ColumnB
 ```sql
 USE sql_store;
