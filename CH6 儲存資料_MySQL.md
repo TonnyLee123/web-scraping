@@ -44,6 +44,7 @@ Query editor window
 # WHERE
 - Filter the result with specify condition(row).
 - 利用WHERE, 選出符合___條件的row
+- 先AND後OR
 ```sql
 SELECT *
 FROM customers
