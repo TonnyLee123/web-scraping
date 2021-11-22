@@ -106,8 +106,14 @@ WHERE phone IS NULL
 ```
 # ORDER BY
 - Sort the ___ column.
-  - ORDER BY first_name 
-
+- DESC
+```sql
+SELECT *
+FROM customers
+ORDER BY state  DESC, first_name
+-- DESC (descending)
+-- 相同state, 會再依照first_name排序
+```
 # 總結
 - 這四個不一定要使用，但是當需要他們時必須按照以下順序。
 - SELECT
