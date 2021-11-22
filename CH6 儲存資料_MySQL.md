@@ -50,6 +50,8 @@ Query editor window
 - BETWEEN
 - LIKE/NOT LIKE 
 - REGEXP (Regular Expression)
+- IS／IS NOT NULL
+    - Find NULL   
 ```sql
 SELECT *
 FROM customers
@@ -94,6 +96,13 @@ WHERE last_name REGEXP 'field'
 -- | or
 -- [abcd] 
 -- [a-d]
+```
+IS / IS NOT NULL
+```sql
+SELECT *
+FROM customers
+WHERE phone IS NULL
+-- WHERE phone IS NOT NULL
 ```
 # ORDER BY
 - Sort the ___ column.
