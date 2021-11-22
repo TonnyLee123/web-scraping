@@ -47,6 +47,8 @@ Query editor window
 - 先AND後OR
 - IN / NOT IN
     - Conbine mutiple OR conditions using OR operator.
+- BETWEEN
+- LIKE  
 ```sql
 SELECT *
 FROM customers
@@ -66,6 +68,19 @@ SELECT *
 FROM customers
 WHERE points BETWEEN 1000 and 3000
 -- WHERE points >= 1000 and points <= 3000
+```
+LIKE
+```sql
+SELECT *
+FROM customers
+WHERE last_name LIKE 'b%'
+-- % any number of characters
+-- _ single character
+-- b% = b 開頭
+-- %b% = 中間有b
+-- %b = b 結尾
+-- _b = 第二個字母為b
+-- b__y
 ```
 
 # ORDER BY
