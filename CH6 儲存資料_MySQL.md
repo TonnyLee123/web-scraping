@@ -39,7 +39,7 @@ Query editor window
 ## JOIN ... ON
 - (INNER) JOIN
 - OUTTER JOIN
-- Combine Table
+- 加入其他table
 ```sql
 SELECT *
 -- alias name o
@@ -47,6 +47,8 @@ FROM orders o
 -- 加入customers Table, 並且確認連結的column
 JOIN customers c ON o.customer_id = c.customer_id
 ```
+- Self Join
+ 
 ## WHERE
 - Filter the result with specify condition(row).
 - 利用WHERE, 選出符合___條件的row
