@@ -1,7 +1,7 @@
-Database
+# 1. Database
 - A collection of data stored in a format that can easily be accessed
 
-Database Management System(DBMS)
+# 2. Database Management System(DBMS)
 - 2 types of DBMS
   - Relational
     - MySQL
@@ -9,11 +9,7 @@ Database Management System(DBMS)
     - Oracle
   - NoSQL(non relational)
 
-
-
-
-
-SQL
+# 3.SQL
 - Programming language
 - 被使用在Relational DBMS
 - 唸(Squel)
@@ -51,7 +47,9 @@ Query editor window
 - LIKE/NOT LIKE 
 - REGEXP (Regular Expression)
 - IS／IS NOT NULL
-    - Find NULL   
+    - Find NULL  
+# LIMIT 
+- 只顯使某row
 ```sql
 SELECT *
 FROM customers
@@ -103,6 +101,16 @@ SELECT *
 FROM customers
 WHERE phone IS NULL
 -- WHERE phone IS NOT NULL
+```
+LIMIT
+```sql
+SELECT *
+FROM customers
+-- 只顯示前三row
+LIMIT 3
+
+-- skip前6行，顯示後3行(7, 8, 9)
+LIMIT 6, 3
 ```
 # ORDER BY
 - Sort the ___ column.
