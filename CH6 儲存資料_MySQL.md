@@ -53,6 +53,19 @@ SELECT *
 FROM employees e
 JOIN employees m ON e.reports_to = m.employee_id
  ```
+ - Join multiple Tables
+ ```sql
+ SELECT 
+    o.order_id,
+    o.order_date,
+    c.first_name,
+    c.last_name,
+    os.name AS status
+FROM orders o
+-- join multiple tables
+JOIN customers c ON o.customer_id = c.customer_id
+JOIN order_statuses os ON o.status = os.order_status_id
+```
 ## WHERE
 - Filter the result with specify condition(row).
 - 利用WHERE, 選出符合___條件的row
