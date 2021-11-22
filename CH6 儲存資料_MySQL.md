@@ -48,7 +48,8 @@ Query editor window
 - IN / NOT IN
     - Conbine mutiple OR conditions using OR operator.
 - BETWEEN
-- LIKE  
+- LIKE/NOT LIKE 
+- REGEXP (Regular Expression)
 ```sql
 SELECT *
 FROM customers
@@ -82,7 +83,18 @@ WHERE last_name LIKE 'b%'
 -- _b = 第二個字母為b
 -- b__y
 ```
-
+REGEXP
+```sql
+SELECT *
+FROM customers
+WHERE last_name REGEXP 'field'
+-- WHERE last_name LIKE '%field%'
+-- ^ beginning
+-- $ end
+-- | or
+-- [abcd] 
+-- [a-d]
+```
 # ORDER BY
 - Sort the ___ column.
   - ORDER BY first_name 
