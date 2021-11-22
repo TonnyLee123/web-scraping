@@ -21,23 +21,33 @@ Schemas
   - Database the MySQL internally to do its work. 
 
 Query editor window
-# --
+## --
 - Comment
 
-# USE
+## USE
 - Select database you want to execute.
 - 通常key word大寫
   - USE sql_store;
-# SELECT
+## SELECT
 - Specify the columns the we want to retrieve.
   - SELECT * (all columns)
   - SELECT customer_id,  first_name
 
-# FROM
+## FROM
 - Specify the table the we want to query.
   - FROM customers   
-
-# WHERE
+## JOIN ... ON
+- (INNER) JOIN
+- OUTTER JOIN
+- Combine Table
+```sql
+SELECT *
+-- alias name o
+FROM orders o
+-- 加入customers Table, 並且確認連結的column
+JOIN customers c ON o.customer_id = c.customer_id
+```
+## WHERE
 - Filter the result with specify condition(row).
 - 利用WHERE, 選出符合___條件的row
 - 先AND後OR
@@ -48,7 +58,7 @@ Query editor window
 - REGEXP (Regular Expression)
 - IS／IS NOT NULL
     - Find NULL  
-# LIMIT 
+## LIMIT 
 - 只顯使某row
 ```sql
 SELECT *
