@@ -60,6 +60,13 @@ FROM customers
 WHERE state IN('VA', 'GA', 'FL')
 -- WHERE state = 'VA' or 'GA' or 'FL'
 ``` 
+BETWEEN
+```sql
+SELECT *
+FROM customers
+WHERE points BETWEEN 1000 and 3000
+-- WHERE points >= 1000 and points <= 3000
+```
 
 # ORDER BY
 - Sort the ___ column.
