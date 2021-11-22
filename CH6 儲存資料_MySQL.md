@@ -48,7 +48,11 @@ FROM orders o
 JOIN customers c ON o.customer_id = c.customer_id
 ```
 - Self Join
- 
+ ```sql
+SELECT * 
+FROM employees e
+JOIN employees m ON e.reports_to = m.employee_id
+ ```
 ## WHERE
 - Filter the result with specify condition(row).
 - 利用WHERE, 選出符合___條件的row
