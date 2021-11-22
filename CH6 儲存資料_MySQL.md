@@ -128,7 +128,7 @@ ORDER BY state  DESC, first_name
 - FROM
 - WHERE
 - ORDER BY
-
+- LIMIT
 ### 範例一
 ```sql
 USE sql_store;
