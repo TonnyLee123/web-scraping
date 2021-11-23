@@ -41,6 +41,7 @@ Query editor window
 - OUTER JOIN
     - LEFT JOIN
     - RIGHT JOIN 
+    - 當B加入到A時，因為B有些是null，所以不會顯示在A，使用outer table可以把null也顯示在A。
 - 加入其他table
 - ON (join condition)
 ```sql
@@ -69,7 +70,7 @@ FROM orders o
 JOIN customers c ON o.customer_id = c.customer_id
 JOIN order_statuses os ON o.status = os.order_status_id
 ```
-LEFT JOIN
+- LEFT JOIN
 ```sql
 SELECT
     c.customer_id,
@@ -80,6 +81,25 @@ FROM customers c
 LEFT JOIN orders o
 	ON c.customer_id = o.customer_id
 ORDER BY c.customer_id
+```
+- 綜合
+```sql
+SELECT 
+	o.order_date,
+    o.order_id,
+	c.first_name,
+    s.name,
+    os.name AS status
+FROM orders o
+JOIN customers c
+	ON o.customer_id = c.customer_id
+    
+LEFT JOIN order_statuses os
+	ON o.status = os.order_status_id
+    
+LEFT JOIN shippers s
+	ON o.shipper_id = s.shipper_id
+ORDER BY o.order_date
 ```
 ## WHERE
 - Filter the result with specify condition(row).
