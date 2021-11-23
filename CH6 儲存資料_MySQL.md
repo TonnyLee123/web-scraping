@@ -215,6 +215,21 @@ SELECT
 FROM orders
 WHERE order_date < '2019-01-01'
 ```
+## INSERT INTO table_name(column) ... VALUE(...)
+- Insert single row
+```sql
+INSERT INTO customers
+VALUES(DEFAULT, 'Tonny', 'Lee', '1990-01-01', NULL, '中正路', '蘆洲區', '新北', DEFAULT)
+-- 第一個Default是AI, c_id自動增加1
+```
+- Insert multiple row
+```sql
+INSERT INTO shippers(name)
+VALUES('x'),
+	  ('y'),
+      ('z')
+-- shipper_id是AI, 自動增加1
+```
 # 總結
 - 這四個不一定要使用，但是當需要他們時必須按照以下順序。
 - SELECT
