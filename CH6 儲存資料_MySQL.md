@@ -243,8 +243,24 @@ SELECT *
 FROM orders
 WHERE order_date < '2019-01-01'
 ```
+## UPDATE...SET...
+- update data from row
+```sql
+UPDATE invoices
+SET payment_total = 10, payment_date = '2021-01-01'
+WHERE invoice_id = 1
+```
+## subquery
+- A SELECT statement that is within anothor SQL statement
+```sql
+UPDATE orders
+SET comments = 'Gold customer'
+WHERE customer_id IN (SELECT customer_id
+		      FROM customers
+		      WHERE points > 3000)
+```
 # 總結
-- 這四個不一定要使用，但是當需要他們時必須按照以下順序。
+- 不一定要使用，但是當需要他們時必須按照以下順序。
 - SELECT
 - FROM
 - WHERE
