@@ -230,6 +230,19 @@ VALUES('x'),
       ('z')
 -- shipper_id是AI, 自動增加1
 ```
+## copy data from table to another
+```sql
+-- copy all data from table to another
+CREATE TABLE orders_archived AS
+SELECT * FROM orders
+```
+## copy certain data from table to another
+```sql
+INSERT INTO orders_archived
+SELECT *
+FROM orders
+WHERE order_date < '2019-01-01'
+```
 # 總結
 - 這四個不一定要使用，但是當需要他們時必須按照以下順序。
 - SELECT
@@ -270,3 +283,4 @@ USE sql_store;
 SELECT DISTINCT state 
 FROM customers
 ```
+
