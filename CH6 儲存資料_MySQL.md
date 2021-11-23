@@ -259,6 +259,12 @@ WHERE customer_id IN (SELECT customer_id
 		      FROM customers
 		      WHERE points > 3000)
 ```
+## DELETE FROM table
+- delete ROW
+```sql
+DELETE FROM invoices
+WHERE invoice_id = 1 
+```
 # 總結
 - 不一定要使用，但是當需要他們時必須按照以下順序。
 - SELECT
