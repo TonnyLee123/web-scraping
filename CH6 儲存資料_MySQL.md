@@ -44,6 +44,7 @@ Query editor window
     - 當B加入到A時，因為B有些是null，所以不會顯示在A，使用outer table可以把null也顯示在A。
 - 加入其他table
 - ON (join condition)
+- USING(____)      
 ```sql
 SELECT *
 -- alias name o
@@ -100,6 +101,16 @@ LEFT JOIN order_statuses os
 LEFT JOIN shippers s
 	ON o.shipper_id = s.shipper_id
 ORDER BY o.order_date
+```
+- USING
+```sql
+SELECT 
+	o.order_id,
+    c.first_name
+FROM orders o
+JOIN customers c
+	USING (customer_id)
+-- ON o.customer_id = c.customer_id
 ```
 ## WHERE
 - Filter the result with specify condition(row).
