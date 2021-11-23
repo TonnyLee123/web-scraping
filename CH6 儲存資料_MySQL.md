@@ -197,6 +197,24 @@ ORDER BY state  DESC, first_name
 -- DESC (descending)
 -- 相同state, 會再依照first_name排序
 ```
+## UNION
+-  Combine records from multiple queries. 
+```sql
+SELECT 
+	order_id,
+    order_date,
+    'Active' AS status
+FROM orders
+WHERE order_date >= '2019-01-01'
+-- Combine records from multiple queries. 
+UNION
+SELECT 
+	order_id,
+    order_date,
+    'Archived' AS status
+FROM orders
+WHERE order_date < '2019-01-01'
+```
 # 總結
 - 這四個不一定要使用，但是當需要他們時必須按照以下順序。
 - SELECT
