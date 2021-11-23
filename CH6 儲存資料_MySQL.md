@@ -38,8 +38,11 @@ Query editor window
   - FROM customers   
 ## JOIN ... ON
 - (INNER) JOIN
-- OUTTER JOIN
+- OUTER JOIN
+    - LEFT JOIN
+    - RIGHT JOIN 
 - 加入其他table
+- ON (join condition)
 ```sql
 SELECT *
 -- alias name o
@@ -65,6 +68,18 @@ FROM orders o
 -- join multiple tables
 JOIN customers c ON o.customer_id = c.customer_id
 JOIN order_statuses os ON o.status = os.order_status_id
+```
+LEFT JOIN
+```sql
+SELECT
+    c.customer_id,
+    c.first_name,
+    o.order_id
+FROM customers c
+-- all the records from the left table are returned whether condition is true or not. 
+LEFT JOIN orders o
+	ON c.customer_id = o.customer_id
+ORDER BY c.customer_id
 ```
 ## WHERE
 - Filter the result with specify condition(row).
