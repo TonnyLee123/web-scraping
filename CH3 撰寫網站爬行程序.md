@@ -107,6 +107,8 @@ for ele in bs_obj.find('div', {'id':'bodyContent'}).find_all('a', href = re.comp
 
 ### 範例二 主題網站 -> 主題網站 -> 主題網站 -> ~~~
 getLinks()
+- 建立連線
+- 分析html
 - 取得目前網站的所有**主題Links**
 ```python
 from urllib.request import urlopen
