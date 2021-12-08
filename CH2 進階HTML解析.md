@@ -4,6 +4,9 @@
   - Output 是 **List**
 - find(tag, attributes, recursive, text, keyword)
   - 根據給予的條件去尋找**第一個**符合的標籤。 
+- find_all('p')[x]
+  - x = 0, 即第一個p標籤
+  - x = 1, 即第二個p標籤
 ***
 ### 1.1 各種條件
 - tag
@@ -63,6 +66,9 @@ for nickName in all_nick_name:
 - X標籤中的Y**屬性的值**
 - .attrs可省略
   - X['Y'] 
+- X.attrs
+  - 某標籤的所有屬性清單
+  - {'href':'~', 'class':'~'} 
 ### 範例一 找出所有照片的 src
 ```python
 from urllib.request import urlopen
