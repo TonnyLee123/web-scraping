@@ -1,13 +1,25 @@
-# find_all 與 find()
-- 根據不同的屬性找出所需的全部或單一標籤的元素。
+# 1. find_all 與 find()
 - find_all(tag, attributes, recursive, text, limit, keyword)
+  - 根據給予的條件去尋找**所有**符合的標籤。 
+  - Output 是 **List**
 - find(tag, attributes, recursive, text, keyword)
+  - 根據給予的條件去尋找**第一個**符合的標籤。 
+***
+### 1.1 各種條件
 - tag
   - .find_all("h1")
   - .find_all(["h1", "h2"])
-- attributes
+- tag + attributes
   - .find_all("span", {"class":"nickname"})
   - .find_all("span", {"class":"nickname", "name"})
+- keyword (attributes)
+  - .find_all(id = "title")
+    - = .find_all("", {"id" : "title"}) 
+  - .find_all(class_ = "nickname")
+    - = .find_all("", {"class" : "nickname"}) 
+- text
+  - 根據元素內的文字內容搜尋
+  - .find_all(text = "Hi")
 - recursive
   - 布林值
   - 你想要多深入文件?
@@ -16,18 +28,10 @@
     - 預設為True
   - False
     - 只在文件的第一層，尋找符合的標籤 
-- text
-  - 根據元素內的文字內容搜尋
-  - .find_all(text = "Hi")
 - limit
-  - 只限於find_all
-  - ??? 
-- keyword
-  - 根據attributes搜尋符合的標籤。
-  - .find_all(id = "title")
-    - = .find_all("", {"id" : "title"}) 
-  - .find_all(class_ = "nickname")
-    - = .find_all("", {"class" : "nickname"}) 
+  - 用於find_all
+  - limit = 5
+    - 抓5個符合的資料即可 
 ## find_all 讀取所有nick name
 ```python
 from urllib.request import urlopen
