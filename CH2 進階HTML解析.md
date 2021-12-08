@@ -31,8 +31,11 @@
 - limit
   - 用於find_all
   - limit = 5
-    - 抓5個符合的資料即可 
-## find_all 讀取所有nick name
+    - 抓5個符合的資料即可
+***
+### 範例一 透過 find_all 讀取所有 nick name
+URL = https://zh.wikipedia.org/wiki/%E9%82%B5%E5%A5%95%E7%8E%AB
+
 ```python
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
@@ -41,7 +44,7 @@ web = urlopen("https://zh.wikipedia.org/wiki/%E9%82%B5%E5%A5%95%E7%8E%AB")
 html = web.read()
 bs_obj = BeautifulSoup(html, "html.parser")
 
-# 尋找標籤為span 屬性為class = "nickname" 的元素
+# 尋找標籤為span，屬性為class = "nickname" 的元素
 all_nick_name = bs_obj.find_all("span", {"class":"nickname"})
 
 # Shao Yi-Me & Mimi Shao
