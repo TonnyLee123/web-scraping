@@ -33,13 +33,15 @@
   - limit = 5
     - 抓5個符合的資料即可
 ***
-### 範例一 透過 find_all 讀取所有 nick name
+# 2. get_text()
+- 取得標籤內的文字。
+***
+### 範例一 找出所有 nickname，並且 print 出來。
 URL = https://zh.wikipedia.org/wiki/%E9%82%B5%E5%A5%95%E7%8E%AB
 
 ```python
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
-
 web = urlopen("https://zh.wikipedia.org/wiki/%E9%82%B5%E5%A5%95%E7%8E%AB")
 html = web.read()
 bs_obj = BeautifulSoup(html, "html.parser")
@@ -50,8 +52,7 @@ all_nick_name = bs_obj.find_all("span", {"class":"nickname"})
 # Shao Yi-Me & Mimi Shao
 print(len(all_nick_name)) 
 ```
-
-2. get_text()
+![img](https://github.com/TonnyLee123/-.md/blob/main/Screenshot%202021-12-08%20175652.jpg)
 ```python
 print(all_nick_name[0].get_text())
 print(all_nick_name[1].get_text())
@@ -60,7 +61,6 @@ print(all_nick_name[1].get_text())
 for nickName in all_nick_name:
     print(nickName.get_text())
 ```
-取得標籤內的文字。
 
 ## 走訪樹p19
 - 根據文件位置找元素
@@ -103,7 +103,6 @@ bs_obj = BeautifulSoup(html, "html.parser")
 
 print(bs_obj.find("tr", {"id" : "gift1", "class":"gift"}).td.next_sibling.next_sibling.get_text())
 ```
-
 
 
 # regex(正規表示式)
