@@ -59,21 +59,6 @@ def getLinks(pageURL):
 getLinks('/wiki/%E9%82%B5%E5%A5%95%E7%8E%AB')
 ```
 
-上的註解
-```python
-from urllib.request import urlopen
-from bs4 import BeautifulSoup
-
-web = urlopen('https://zh.wikipedia.org/wiki/%E9%82%B5%E5%A5%95%E7%8E%AB')
-html = web.read()
-bs_obj = BeautifulSoup(html, "html.parser")
-
-print(bs_obj.h1.get_text())
-print(bs_obj.find(id = 'mw-content-text').find_all('p')[0])
-print(bs_obj.find(id ='ca-edit').find('a').attrs['href'])
-
-```
-
 ### 範例一 爬取所有links(包含主題連結，其他連結)
 ```python
 web = urlopen("https://zh.wikipedia.org/wiki/%E9%82%B5%E5%A5%95%E7%8E%AB")
