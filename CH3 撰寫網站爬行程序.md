@@ -124,8 +124,6 @@ def getLinks(articleUrl):
     web = urlopen("https://zh.wikipedia.org{}".format(articleUrl)) # https://zh.wikipedia.org/wiki/%E9%82%B5%E5%A5%95%E7%8E%AB
     html = web.read()
     bs_obj = BeautifulSoup(html, "html.parser")
-    
-    # return vs_obj
     return bs_obj.find('div', id = 'bodyContent').find_all('a', href = re.compile("^(/wiki/)((?!:).)*$")) # 尋找主題連結
 
 subject_links = getLinks('/wiki/%E9%82%B5%E5%A5%95%E7%8E%AB')
@@ -135,7 +133,7 @@ while len(subject_links ) > 0:
     # 隨機找出一個主題連結作為新頁面。
     newAriticle = subject_links[random.randint(0, len(subject_links)-1)].attrs['href']
     print(newAriticle)
-    subject_links = getLinks(newAriticle) # 新article裡的所有主題連結
+    subject_links = getLinks(newAriticle)
 
 ```
 
