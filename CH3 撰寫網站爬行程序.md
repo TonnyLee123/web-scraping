@@ -70,19 +70,27 @@ print(bs_obj.find(id ='ca-edit').find('a').attrs['href'])
 
 ```
 
-### 爬取所有links(包含主題連結，其他連結)
+### 範例一 爬取所有links(包含主題連結，其他連結)
 ```python
 web = urlopen("https://zh.wikipedia.org/wiki/%E9%82%B5%E5%A5%95%E7%8E%AB")
 html = web.read()
 bs_obj = BeautifulSoup(html, "html.parser")
 
 for link in bs_obj.find_all('a'):
+    # 如果 屬性href 在'屬性列表清單'中，則~~~
+    # 因為不是所有a標籤都依定會有href屬性!!!
     if 'href' in link.attrs:
         print(link.attrs['href'])
 ```
-問題: 擷取到的連結包含主要連結與其他連結(不重要的)
-
-### 爬取主題links
+問題: 爬取到的連結包含主要連結與其他連結(不重要的)  
+解決方式: 範例二
+***
+### 範例二 只爬取主題links
+解決方式: 觀察主題連結的格式，再使用Regex選取合適格式的網址。  
+wiki主題頁的連結的共同特徵( ^(/wiki/)((?!:).)*$ )
+- 都在bodyContent的div中
+- URL 中沒有冒號
+- URL 以/wiki/開頭
 ```python
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
@@ -92,16 +100,10 @@ web = urlopen("https://zh.wikipedia.org/wiki/%E9%82%B5%E5%A5%95%E7%8E%AB")
 html = web.read()
 bs_obj = BeautifulSoup(html, "html.parser")
 
-for ele in bs_obj.find('div', {'id':'bodyContent'}).find_all('a', href = re.compile("^(/wiki/)((?!:).)*$")):  # 指讀取主題連結
+for ele in bs_obj.find('div', {'id':'bodyContent'}).find_all('a', href = re.compile("^(/wiki/)((?!:).)*$")):  # 只爬取主題連結
     print(ele.attrs['href'])
 ```
-解決方式: 使用Regex
-- Regex 選取合適格式的網址。
 
-wiki主題頁的連結的共同特徵
-- 都在bodyContent的div中
-- URL 中沒有冒號
-- URL 以/wiki/開頭
 
 ### getLinks主函式
 - 功能: Return bs_object
