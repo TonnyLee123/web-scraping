@@ -85,7 +85,7 @@ for link in bs_obj.find_all('a'):
 問題: 爬取到的連結包含主要連結與其他連結(不重要的)  
 解決方式: 範例二
 ***
-### 範例二 只爬取主題links
+### 範例一之二 只爬取主題links
 解決方式: 觀察主題連結的格式，再使用Regex選取合適格式的網址。  
 wiki主題頁的連結的共同特徵( ^(/wiki/)((?!:).)*$ )
 - 都在bodyContent的div中
@@ -105,8 +105,9 @@ for ele in bs_obj.find('div', {'id':'bodyContent'}).find_all('a', href = re.comp
 ```
 
 
-### getLinks主函式
-- 功能: Return bs_object
+### 範例二 主題網站 -> 主題網站 -> 主題網站 -> ~~~
+getLinks()
+- 取得目前網站的所有**主題Links**
 ```python
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
@@ -117,7 +118,6 @@ import datetime
 # 以系統目前的時間產收隨機亂數，確保程式每次執行時都有新路徑。
 random.seed(datetime.datetime.now())
 
-# getLink():取得bs_object
 def getLinks(articleUrl):
     web = urlopen("https://zh.wikipedia.org{}".format(articleUrl)) # https://zh.wikipedia.org/wiki/%E9%82%B5%E5%A5%95%E7%8E%AB
     html = web.read()
