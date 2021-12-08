@@ -22,42 +22,6 @@ def getLinks(pageURL):
                 getLinks(newPage)
 getLinks('/wiki/%E9%82%B5%E5%A5%95%E7%8E%AB')
 ```
-```python
-from urllib.request import urlopen
-from bs4 import BeautifulSoup
-import re
-
-# set() 元素獨特且沒有特定順序
-pages = set()
-
-def getLinks(pageURL):
-    global pages
-    web = urlopen("https://zh.wikipedia.org{}".format(pageURL))
-    html = web.read()
-    bs_obj = BeautifulSoup(html, "html.parser")
-
-    try:
-        # 標題
-        print(bs_obj.h1.get_text())
-        # [0]第一段
-        print(bs_obj.find(id = 'mw-content-text').find_all('p')[0])
-        # 編輯link
-        print(bs_obj.find(id = 'ca-edit').find('a').attrs['href'])
-        # 有些網站無法編輯(如國家)
-    except AttributeError:
-        print("This page is missing something!")
-
-    for link in bs_obj.find_all('a', href = re.compile('^(/wiki/)')):
-        if 'href' in link.attrs:
-            if link.attrs['href'] not in pages:
-                newPage = link.attrs['href']
-                print('-'*20)
-                print(newPage)
-                pages.add(newPage)
-                getLinks(newPage)
-
-getLinks('/wiki/%E9%82%B5%E5%A5%95%E7%8E%AB')
-```
 
 ### 範例一 爬取所有links(包含主題連結，其他連結)
 ```python
