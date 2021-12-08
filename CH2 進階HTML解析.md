@@ -33,12 +33,12 @@
   - limit = 5
     - 抓5個符合的資料即可
 ***
-# 2. get_text()
+# 2. .get_text()
 - 取得標籤內的文字。
-***
-### 範例一 找出所有 nickname，並且 print 出來。
-URL = https://zh.wikipedia.org/wiki/%E9%82%B5%E5%A5%95%E7%8E%AB
 
+### 範例一 找出所有 nickname，並且 print 出來。
+URL = https://zh.wikipedia.org/wiki/%E9%82%B5%E5%A5%95%E7%8E%AB  
+Nick_name = Shao Yi-Me & Mimi Shao
 ```python
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
@@ -48,12 +48,10 @@ bs_obj = BeautifulSoup(html, "html.parser")
 
 # 尋找標籤為span，屬性為class = "nickname" 的元素
 all_nick_name = bs_obj.find_all("span", {"class":"nickname"})
-
-# Shao Yi-Me & Mimi Shao
-print(len(all_nick_name)) 
 ```
 ![img](https://github.com/TonnyLee123/-.md/blob/main/Screenshot%202021-12-08%20175652.jpg)
 ```python
+# 取得標籤內的文字
 print(all_nick_name[0].get_text())
 print(all_nick_name[1].get_text())
 
@@ -61,18 +59,41 @@ print(all_nick_name[1].get_text())
 for nickName in all_nick_name:
     print(nickName.get_text())
 ```
+# 3. X.attrs['Y']
+- X標籤中的Y**屬性的值**
+- .attrs可省略
+  - X['Y'] 
+### 範例一 找出所有照片的 src
+```python
+from urllib.request import urlopen
+from bs4 import BeautifulSoup
+web = urlopen("https://pythonscraping.com/pages/page3.html")
+html = web.read()
+bs_obj = BeautifulSoup(html, "html.parser")
 
-## 走訪樹p19
-- 根據文件位置找元素
+imgs = bs_obj.find_all('img')
+for img in imgs:
+    # img標籤中， src屬性的值。
+    print(img.attrs['src'])
+    # 第二種寫法
+    print(img['src])
+```
+# 4.走訪樹(p19)
+- 根據位置找元素
 - children(子節點)
 - descendant(後代)
 - bs.body.h1
-  - body標籤的後代的第一個h1標籤 
+  - body -> h1
 - bs.div.find_all("img")
-  - 找出文件中第一個div，然後在找出此div後代中所有的img
-
-### 範例一 .尋找後代的子節點
+  - div -> img
 ```
+.children
+.next_sibling(s)
+.previous_sibling(s)
+.parent
+```
+### 範例一
+```python
 web = urlopen("https://pythonscraping.com/pages/page3.html")
 html = web.read()
 bs_obj = BeautifulSoup(html, "html.parser")
@@ -83,7 +104,7 @@ for sibling in bs_obj.find('table', {'id': 'giftList'}).tr.next_siblings:
     print(sibling)
 ```
 
-### 讀取某一商品價格
+### 範例二 讀取某一商品價格
 由下往上
 ```python
 web = urlopen("https://pythonscraping.com/pages/page3.html")
@@ -103,11 +124,13 @@ bs_obj = BeautifulSoup(html, "html.parser")
 
 print(bs_obj.find("tr", {"id" : "gift1", "class":"gift"}).td.next_sibling.next_sibling.get_text())
 ```
+***
 
-
-# regex(正規表示式)
-
-### 範例 找出電子郵件地址
+# 5. regex(regular expression)
+- 正規表示式
+- 過濾不符合要求的文字，找出符合某格式下的文字!!!
+- re.compile('regex)
+### 範例一 找出電子郵件地址
 ```
 [A-Za-z0-9\._+]+@[A-Za-z]+\.(com|org|edu|net)
 ```
@@ -119,3 +142,20 @@ print(bs_obj.find("tr", {"id" : "gift1", "class":"gift"}).td.next_sibling.next_s
 - [A-Za-z]+
 - \.
 - (com|org|edu)
+### 範例二
+```python
+from urllib.request import urlopen
+from bs4 import BeautifulSoup
+# !注意!
+import re
+web = urlopen("https://pythonscraping.com/pages/page3.html")
+html = web.read()
+bs_obj = BeautifulSoup(html, "html.parser")
+# regex
+imgs = bs_obj.find_all('img', src = re.compile('\.\./img/gifts/img.*\.jpg'))
+for img in imgs:
+    print(img)
+    print(img['src'])
+```
+
+
