@@ -37,9 +37,13 @@ def getLinks(pageURL):
     bs_obj = BeautifulSoup(html, "html.parser")
 
     try:
+        # 標題
         print(bs_obj.h1.get_text())
+        # [0]第一段
         print(bs_obj.find(id = 'mw-content-text').find_all('p')[0])
-        print(bs_obj.find(id = 'ca-edit').find('a').attrs['href']))
+        # 編輯link
+        print(bs_obj.find(id = 'ca-edit').find('a').attrs['href'])
+        # 有些網站無法編輯(如國家)
     except AttributeError:
         print("This page is missing something!")
 
