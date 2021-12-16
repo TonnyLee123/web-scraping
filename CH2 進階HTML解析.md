@@ -141,7 +141,7 @@ print(bs_obj.find("tr", {"id" : "gift1", "class":"gift"}).td.next_sibling.next_s
 a91802tony@gmail.com
 [A-Za-z0-9\._+]+@[A-Za-z]+\.(com|org|edu|net)
 ```
-### 範例二
+### 範例二 找出格式為 \.\./img/gifts/img.*\.jpg 的網址
 ```python
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
