@@ -62,10 +62,10 @@ print(all_nick_name[1].get_text())
 for nickName in all_nick_name:
     print(nickName.get_text())
 ```
-# 3. tag.attrs['Y']
-- X標籤中的Y**屬性的值**
-- .attrs可省略
-  - img['Y'] 
+# 3. 存取標籤中屬性的值
+- img標籤中， src屬性的值。
+  - img.attrs['src'] 
+  - img.['src'] 
 - X.attrs
   - 某標籤的所有屬性清單
   - img.attrs
