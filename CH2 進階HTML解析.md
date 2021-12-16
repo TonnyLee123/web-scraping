@@ -52,7 +52,7 @@ bs_obj = BeautifulSoup(html, "html.parser")
 # 尋找標籤為span，屬性為class = "nickname" 的元素
 all_nick_name = bs_obj.find_all("span", {"class":"nickname"})
 ```
-![img](https://github.com/TonnyLee123/-.md/blob/main/Screenshot%202021-12-08%20175652.jpg)
+
 ```python
 # 取得標籤內的文字
 print(all_nick_name[0].get_text())
