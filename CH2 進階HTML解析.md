@@ -62,12 +62,13 @@ print(all_nick_name[1].get_text())
 for nickName in all_nick_name:
     print(nickName.get_text())
 ```
-# 3. X.attrs['Y']
+# 3. tag.attrs['Y']
 - X標籤中的Y**屬性的值**
 - .attrs可省略
-  - X['Y'] 
+  - img['Y'] 
 - X.attrs
   - 某標籤的所有屬性清單
+  - img.attrs
   - {'href':'~', 'class':'~'} 
 ### 範例一 找出所有照片的 src
 ```python
