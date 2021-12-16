@@ -4,8 +4,7 @@ urllib
 - python標準函式庫
 - 功能:
   - 從網路請求資料
-  - 處理cookie
-  - 處理標頭檔，user agent，metadata 
+  - 處理標頭檔，user agent，metadata，cookie
 
 urlopen
 - 打開並讀取HTML檔案，影像檔案，等等
