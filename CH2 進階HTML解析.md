@@ -66,8 +66,7 @@ for nickName in all_nick_name:
 - img標籤中， src屬性的值。
   - img.attrs['src'] 
   - img.['src'] 
-- X.attrs
-  - 某標籤的所有屬性清單
+- img的所有屬性清單
   - img.attrs
   - {'href':'~', 'class':'~'} 
 ### 範例一 找出所有照片的 src
