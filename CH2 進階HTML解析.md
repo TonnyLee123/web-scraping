@@ -138,16 +138,9 @@ print(bs_obj.find("tr", {"id" : "gift1", "class":"gift"}).td.next_sibling.next_s
 - re.compile('regex)
 ### 範例一 找出電子郵件地址
 ```
+a91802tony@gmail.com
 [A-Za-z0-9\._+]+@[A-Za-z]+\.(com|org|edu|net)
 ```
-- [A-Za-z0-9\._+]+
-  - 第一部分: 至少包含下列之一: 大小寫字母，數字，.，_，+
-  - []+
-  - +
-- @
-- [A-Za-z]+
-- \.
-- (com|org|edu)
 ### 範例二
 ```python
 from urllib.request import urlopen
